@@ -1,0 +1,14 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/tsty.uss?fileID=7433441132597879392&amp;guid=743e83c001439fd4dbd52d6f582813d9&amp;type=3#tsty" />
+    <ui:VisualElement style="flex-grow: 1; justify-content: space-around; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">
+        <ui:VisualElement name="text" style="padding-left: 20%; padding-right: 20%; align-items: center;">
+            <ui:Label display-tooltip-when-elided="true" name="Question" style="-unity-font: url(&apos;project://database/Assets/TextMesh%20Pro/Examples%20&amp;%20Extras/Fonts/Electronic%20Highway%20Sign.TTF?fileID=12800000&amp;guid=8a2b9e2a607dd2143b58c44bc32410b4&amp;type=3#Electronic Highway Sign&apos;); font-size: 48px;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="footer" style="flex-basis: 25%; align-items: center; justify-content: space-around; padding-left: 10%; padding-right: 10%; flex-direction: row;">
+            <ui:Button display-tooltip-when-elided="true" name="Button1" style="flex-basis: auto; width: 20%; height: 40%; background-color: rgb(92, 116, 233); -unity-font: url(&apos;project://database/Assets/TextMesh%20Pro/Examples%20&amp;%20Extras/Fonts/Electronic%20Highway%20Sign.TTF?fileID=12800000&amp;guid=8a2b9e2a607dd2143b58c44bc32410b4&amp;type=3#Electronic Highway Sign&apos;); font-size: 20px;" />
+            <ui:Button display-tooltip-when-elided="true" name="Button2" style="flex-basis: auto; width: 20%; height: 40%; background-color: rgb(92, 116, 233); -unity-font: url(&apos;project://database/Assets/TextMesh%20Pro/Examples%20&amp;%20Extras/Fonts/Electronic%20Highway%20Sign.TTF?fileID=12800000&amp;guid=8a2b9e2a607dd2143b58c44bc32410b4&amp;type=3#Electronic Highway Sign&apos;); font-size: 20px;" />
+            <ui:Button display-tooltip-when-elided="true" name="Button3" style="flex-basis: auto; width: 20%; height: 40%; background-color: rgb(92, 116, 233); -unity-font: url(&apos;project://database/Assets/TextMesh%20Pro/Examples%20&amp;%20Extras/Fonts/Electronic%20Highway%20Sign.TTF?fileID=12800000&amp;guid=8a2b9e2a607dd2143b58c44bc32410b4&amp;type=3#Electronic Highway Sign&apos;); font-size: 20px;" />
+            <ui:Button display-tooltip-when-elided="true" name="Button4" style="flex-basis: auto; width: 20%; height: 40%; background-color: rgb(92, 116, 233); -unity-font: url(&apos;project://database/Assets/TextMesh%20Pro/Examples%20&amp;%20Extras/Fonts/Electronic%20Highway%20Sign.TTF?fileID=12800000&amp;guid=8a2b9e2a607dd2143b58c44bc32410b4&amp;type=3#Electronic Highway Sign&apos;); font-size: 20px;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
