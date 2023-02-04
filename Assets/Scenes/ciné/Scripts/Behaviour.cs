@@ -12,7 +12,6 @@ public class Behaviour : MonoBehaviour
 
     private void Start() {
         text = GameObject.Find("GameManager").GetComponent<CineGameManager>().text;
-        print(GameObject.Find("GameManager"));
     }
     private void OnMouseDown() {
         //Animate

@@ -8,6 +8,6 @@ public class MathLoseManager : LoseManager
 
     public override void Win()
     {
-        throw new System.NotImplementedException();
+        Debug.Log("Winner !!");
     }
 }
