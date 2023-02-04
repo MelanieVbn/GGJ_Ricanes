@@ -8,7 +8,9 @@ public class RootingManager : MonoBehaviour
     [SerializeField] GameObject[] needleRange;
     [SerializeField] GameObject rootingZone;
     [SerializeField] GameObject needle;
-    [SerializeField] float needleMoveSpeed = 2f;
+    [SerializeField] float needleMoveSpeed = 1.5f;
+    [SerializeField] int lives = 1;
+    [SerializeField] int rootingSteps = 3;
 
     private RootingZoneGauge rootingZoneGaugeScript;
     private Coroutine balancier;
@@ -16,8 +18,10 @@ public class RootingManager : MonoBehaviour
     private Vector3 gaugeStart;
     private Vector3 gaugeEnd;
 
-    private bool isNeedleStopped = false;
-    private bool canStop = true;
+    private bool isNeedleStopped;
+    private bool canStop;
+
+    private bool gameEnded;
 
     private void Awake()
     {
@@ -32,27 +36,60 @@ public class RootingManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        needle.transform.position = gaugeStart;
-        balancier = StartCoroutine(Balancier());
+        StartGauge();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (canStop && Input.GetKeyDown(KeyCode.Space) && !isNeedleStopped)
+        if (!gameEnded)
         {
-            isNeedleStopped = true;
-            canStop = false;
-
-            StopCoroutine(balancier);
-            if (IsIndicatorInRightZone())
+            if(rootingSteps == 0)
             {
-                Debug.Log("right");
+                Debug.Log("You win");
+                gameEnded = true;
             }
             else
             {
-                Debug.Log("you loose");
+                if (canStop && Input.GetKeyDown(KeyCode.Space) && !isNeedleStopped && rootingSteps > 0)
+                {
+                    isNeedleStopped = true;
+                    canStop = false;
+
+                    StopCoroutine(balancier);
+                    if (IsIndicatorInRightZone())
+                    {
+                        player.transform.position = new Vector3(player.transform.position.x, player.transform.position.y - 1, player.transform.position.z);
+                        rootingSteps--;
+
+                        StartGauge();
+                    }
+                    else
+                    {
+                        if(lives > 0)
+                        {
+                            StartGauge();
+                            lives--;
+                        }
+                        else
+                        {
+                            gameEnded = true;
+                            Debug.Log("You Loose");
+                        }
+                    }
+                }
             }
+        }
+    }
+
+    void StartGauge()
+    {
+        if (rootingSteps > 0 && lives > 0)
+        {
+            isNeedleStopped = false;
+            canStop = true;
+            needle.transform.position = gaugeStart;
+            balancier = StartCoroutine(Balancier());
         }
     }
 
