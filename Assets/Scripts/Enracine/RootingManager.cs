@@ -13,7 +13,9 @@ public class RootingManager : MonoBehaviour
     [SerializeField] int lives = 1;
     [SerializeField] int rootingSteps = 3;
 
+
     [SerializeField] Animator animator;
+    [SerializeField] ParticleSystem particles;
 
     private RootingZoneGauge rootingZoneGaugeScript;
     private Coroutine balancier;
@@ -67,6 +69,7 @@ public class RootingManager : MonoBehaviour
                         animator.SetTrigger("rooting");
                         StartCoroutine(WaitForSeconds(.6f, () =>
                         {
+                            particles.Play();
                             player.transform.position = new Vector3(player.transform.position.x, player.transform.position.y - 1, player.transform.position.z);
                             rootingSteps--;
                             StartGauge();
