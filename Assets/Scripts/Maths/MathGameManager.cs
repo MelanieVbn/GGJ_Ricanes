@@ -30,10 +30,10 @@ public class MathGameManager : MonoBehaviour
         Button button4 = root.Q<Button>("Button4");
         label = root.Q<Label>("Question");
         buttons = new List<Button> { button1, button2, button3, button4 };
-        button1.clicked += () => OnClickButton(1);
-        button2.clicked += () => OnClickButton(2);
-        button3.clicked += () => OnClickButton(3);
-        button4.clicked += () => OnClickButton(4);
+        button1.clicked += () => OnClickButton(0);
+        button2.clicked += () => OnClickButton(1);
+        button3.clicked += () => OnClickButton(2);
+        button4.clicked += () => OnClickButton(3);
     }
 
     void ChooseAnswers() {
@@ -43,9 +43,19 @@ public class MathGameManager : MonoBehaviour
         goodResponseIndex = Random.Range(0, 4);
         buttons[goodResponseIndex].text = possibleSquareRoots[squareRoot].ToString();
         buttons.RemoveAt(goodResponseIndex);
+        foreach(Button button in buttons) {
+            int wrongAnswer = Random.Range(0, possibleWrongAnswers.Count);
+            button.text = possibleWrongAnswers[wrongAnswer];
+            possibleWrongAnswers.RemoveAt(wrongAnswer);
+        }
     }
 
     void OnClickButton(int buttonId) {
-        
+        if (buttonId == goodResponseIndex) {
+            GetComponent<LoseManager>().Win();
+        }
+        else {
+            GetComponent<LoseManager>().Lose();
+        }
     }
 }

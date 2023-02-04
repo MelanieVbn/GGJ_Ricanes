@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: "Assets/Scenes/cin\xE9/Cinescene.unity"
+    path: Assets/Scenes/Start Menu.unity
+    guid: ddb514ea484f14d4f88c7d880eb1d125
+  - enabled: 1
+    path: Assets/Scenes/Cinescene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}
