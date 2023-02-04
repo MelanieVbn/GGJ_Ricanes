@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,8 @@ public class RootingManager : MonoBehaviour
     [SerializeField] float needleMoveSpeed = 1.5f;
     [SerializeField] int lives = 1;
     [SerializeField] int rootingSteps = 3;
+
+    [SerializeField] Animator animator;
 
     private RootingZoneGauge rootingZoneGaugeScript;
     private Coroutine balancier;
@@ -57,16 +60,22 @@ public class RootingManager : MonoBehaviour
                     canStop = false;
 
                     StopCoroutine(balancier);
+
+
                     if (IsIndicatorInRightZone())
                     {
-                        player.transform.position = new Vector3(player.transform.position.x, player.transform.position.y - 1, player.transform.position.z);
-                        rootingSteps--;
-
-                        StartGauge();
+                        animator.SetTrigger("rooting");
+                        StartCoroutine(WaitForSeconds(.6f, () =>
+                        {
+                            player.transform.position = new Vector3(player.transform.position.x, player.transform.position.y - 1, player.transform.position.z);
+                            rootingSteps--;
+                            StartGauge();
+                        }));
                     }
                     else
                     {
-                        if(lives > 0)
+                        animator.SetTrigger("angry");
+                        if (lives > 0)
                         {
                             StartGauge();
                             lives--;
@@ -108,5 +117,11 @@ public class RootingManager : MonoBehaviour
             needle.transform.position = Vector3.Lerp(gaugeStart, gaugeEnd, Mathf.PingPong(x, 1));
             yield return null;
         }
+    }
+
+    IEnumerator WaitForSeconds(float duration, Action action = null)
+    {
+        yield return new WaitForSeconds(duration);
+        action?.Invoke();
     }
 }
