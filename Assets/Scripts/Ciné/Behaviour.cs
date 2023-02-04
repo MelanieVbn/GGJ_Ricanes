@@ -7,12 +7,15 @@ using System;
 public class Behaviour : MonoBehaviour
 {
     [SerializeField]
-    Races race;
+    public Races race;
     TMP_Text text;
+
+    private static bool eventProcessed = false;
 
     private void Start() {
         text = GameObject.Find("GameManager").GetComponent<CineGameManager>().text;
     }
+
     private void OnMouseDown() {
         //Animate
         //Cri
@@ -24,10 +27,15 @@ public class Behaviour : MonoBehaviour
     }
 
     private void OnMouseEnter() {
-        this.GetComponent<SpriteRenderer>().flipX = true;
+        if (!eventProcessed) {
+            this.GetComponent<SpriteRenderer>().flipX = true;
+            eventProcessed = true;
+        }
     }
 
     private void OnMouseExit() {
         this.GetComponent<SpriteRenderer>().flipX = false;
+        eventProcessed = false;
     }
 }
+

@@ -6,18 +6,26 @@ using System;
 
 public class CineGameManager : MonoBehaviour
 {
-    [SerializeField]
-    List<GameObject> animals;
+    public static bool mouseEnteredSomething = false;
+    public List<Sprite> animalSprites;
     [SerializeField]
     List<GameObject> sieges;
     [SerializeField]
     public TMP_Text text;
     void Start()
     {
-        foreach(GameObject animal in animals) {
-            int emplacement = UnityEngine.Random.Range(0, sieges.Count);
-            Instantiate(animal, sieges[emplacement].transform.position, Quaternion.Euler(0, 0, 0));
-            sieges.RemoveAt(emplacement);
+        GameObject rat = null;
+        foreach(Sprite animal in animalSprites) {
+            if (sieges.Count != 0) {
+                int emplacement = UnityEngine.Random.Range(0, sieges.Count);
+                sieges[emplacement].GetComponent<SpriteRenderer>().sprite = animal;
+                sieges[emplacement].AddComponent<PolygonCollider2D>();
+                rat = sieges[emplacement];
+                sieges.RemoveAt(emplacement);
+            }
+        }
+        if (rat) {
+            rat.GetComponent<Behaviour>().race = Races.Rat;
         }
     }
 }
