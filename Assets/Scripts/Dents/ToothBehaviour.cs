@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ToothBehaviour : MonoBehaviour
 {
-    public int id;
-    public bool direction;
+    public bool isBad;
+    public bool retournee = false;
     [SerializeField]
     int minMagnitude = 200;
     [SerializeField]
@@ -17,16 +17,25 @@ public class ToothBehaviour : MonoBehaviour
         GameObject.Find("GameManager");
         mousePosition = Input.mousePosition;
         localTempsArrache = tempsDArrachage;
+        if(!isBad) {
+            print("pas la bonne dent");
+        }
     }
 
     private void OnMouseDrag() {
         var heading = Input.mousePosition - mousePosition;
         var dragPosition = heading / heading.magnitude;
-        if (dragPosition.y > 0 && heading.magnitude > minMagnitude) {
-            localTempsArrache -= Time.deltaTime;
-            if (localTempsArrache < 0) {
-                print("Win !!!");
+        if (heading.magnitude > minMagnitude) {
+            if ((dragPosition.y > 0 && !retournee) || (dragPosition.y < 0 && retournee)) {
+                localTempsArrache -= Time.deltaTime;
+                if (localTempsArrache < 0) {
+                    if (isBad)
+                        print("Win !!!");
+                    else
+                        print("LOSE");
+                }
             }
+
         }
     }
 
