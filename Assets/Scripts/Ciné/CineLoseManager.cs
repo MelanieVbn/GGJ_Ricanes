@@ -13,12 +13,12 @@ public class CineLoseManager : LoseManager
     }
     public override void Lose()
     {
-        gameOrchestrator.MiniGameEnded();
+        gameOrchestrator.MiniGameEnded(0);
     }
 
-    public override void Win()
+    public override void Win(int score)
     {
-        gameOrchestrator.MiniGameEnded();
+        gameOrchestrator.MiniGameEnded(score);
         //throw new System.NotImplementedException();
     }
 }

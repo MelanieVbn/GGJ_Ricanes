@@ -13,9 +13,9 @@ public class MathLoseManager : LoseManager
         Debug.Log("LOSER");
     }
 
-    public override void Win()
+    public override void Win(int score)
     {
         Debug.Log("Winner !!");
-        gameOrchestrator.MiniGameEnded();
+        gameOrchestrator.MiniGameEnded(score);
     }
 }

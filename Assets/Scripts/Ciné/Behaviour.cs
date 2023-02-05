@@ -26,7 +26,7 @@ public class Behaviour : MonoBehaviour
         //Cri
         if (race == Races.Rat) {
             //text.text = "Rat-cine !";
-            loseBehaviour.Win();
+            loseBehaviour.Win(100);
 
         } else {
             //text.text = "De-Rat-cine !";
