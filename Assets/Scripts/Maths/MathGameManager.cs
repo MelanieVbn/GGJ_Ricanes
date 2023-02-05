@@ -1,44 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
+using TMPro;
+// using UnityEngine.UIElements;
 
 public class MathGameManager : MonoBehaviour
 {
-    List<Button> buttons;
-    [SerializeField]
-    public List<string> buttonNames;
     [SerializeField]
     List<string> possibleWrongAnswers;
     [SerializeField]
     List<int> possibleSquareRoots;
-    Label label;
+    [SerializeField]
+    List<TMP_Text> buttons;
+    [SerializeField]
+    TMP_Text question;
 
     int goodResponseIndex;
     void Start()
     {
-        CreateButtons();
         ChooseAnswers();
-    }
-
-    void CreateButtons() {
-        for (int i = 0; i < buttonNames.Count; i++)
-        {
-            Button button = GameObject.Find(buttonNames[i]).GetComponent<Button>();
-            buttons.Add(button);
-        }
     }
 
     void ChooseAnswers() {
         var squareRoot = Random.Range(0, possibleSquareRoots.Count);
         var labelText = Mathf.Pow(possibleSquareRoots[squareRoot], 2).ToString();
-        label.text = labelText;
+        question.text = labelText;
         goodResponseIndex = Random.Range(0, 4);
+        // AssignText(buttons[goodResponseIndex],  possibleSquareRoots[squareRoot].ToString());
         buttons[goodResponseIndex].text = possibleSquareRoots[squareRoot].ToString();
         buttons.RemoveAt(goodResponseIndex);
-        foreach(Button button in buttons) {
+        foreach(TMP_Text button in buttons) {
             int wrongAnswer = Random.Range(0, possibleWrongAnswers.Count);
+            // button.text = possibleWrongAnswers[wrongAnswer];
             button.text = possibleWrongAnswers[wrongAnswer];
+            // AssignText(button, possibleWrongAnswers[wrongAnswer]);
             possibleWrongAnswers.RemoveAt(wrongAnswer);
         }
     }
