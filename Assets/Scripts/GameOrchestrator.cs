@@ -1,24 +1,52 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameOrchestrator : MonoBehaviour
 {
     public List<string> minijeux;
-    List<string> ordreJeux;
-    private static bool addedSpy = false;
-    private static int gameIndex = 0;
+    public int gameIndex = 0;
+    public int miniGameCount = 10;
+
     void Start() {
-        if (!addedSpy) {
-            addedSpy = true;
-            SceneManager.sceneLoaded += OnSceneLoaded;
-            ordreJeux = minijeux;
-            Shuffle(ordreJeux);
-            this.GetComponent<LevelLoader>().LoadNextScene(ordreJeux[gameIndex]);
-        }
+            Debug.Log("START");
+            NextMiniGame();
     }
 
+    void NextMiniGame()
+    {
+        if(miniGameCount > 0)
+        { 
+            miniGameCount--;
+            SceneManager.sceneLoaded += OnSceneLoaded;
+            int randomIndex = Random.Range(0, minijeux.Count);
+            while (randomIndex == gameIndex)
+            {
+                randomIndex = Random.Range(0, minijeux.Count);
+                Debug.Log(randomIndex);
+            }
+            gameIndex = randomIndex;
+            this.GetComponent<LevelLoader>().LoadNextScene(minijeux[gameIndex]);
+        }
+        else
+        {
+            LoadEndScreen();
+        }
+        
+    }
+
+    void LoadEndScreen()
+    {
+        SceneManager.LoadScene("Start Menu");
+        //TextMeshProUGUI text = transition.GetComponentInChildren<TextMeshProUGUI>();
+        //text.color = Random.ColorHSV();
+        //transition.SetActive(true);
+        //StartCoroutine(transition.ChangeScale(.5f, 8f, Vector3.zero, initialTransitionScale, () => {
+        //    SceneManager.LoadScene("Start Menu");
+        //}));
+    }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
         Debug.Log("OnSceneLoaded: " + scene.name);
     }
@@ -33,5 +61,10 @@ public class GameOrchestrator : MonoBehaviour
             scenes[i] = scenes[randomIndex];
             scenes[randomIndex] = temp;
         }
+    }
+
+    public void MiniGameEnded()
+    {
+        NextMiniGame();
     }
 }

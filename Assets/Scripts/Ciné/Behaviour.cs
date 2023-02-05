@@ -6,23 +6,31 @@ using System;
 
 public class Behaviour : MonoBehaviour
 {
+    CineLoseManager loseBehaviour;
     [SerializeField]
     public Races race;
     TMP_Text text;
 
     private static bool eventProcessed = false;
 
-    private void Start() {
-        text = GameObject.Find("GameManager").GetComponent<CineGameManager>().text;
+    private void Start()
+    {
+        loseBehaviour = gameObject.GetComponent<CineLoseManager>();
     }
+    //private void Start() {
+    //    text = GameObject.Find("GameManager").GetComponent<CineGameManager>().text;
+    //}
 
     private void OnMouseDown() {
         //Animate
         //Cri
         if (race == Races.Rat) {
-            text.text = "Rat-cine !";
+            //text.text = "Rat-cine !";
+            loseBehaviour.Win();
+
         } else {
-            text.text = "De-Rat-cine !";
+            //text.text = "De-Rat-cine !";
+            loseBehaviour.Lose();
         }
     }
 

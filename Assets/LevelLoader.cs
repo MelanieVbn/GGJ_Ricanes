@@ -24,7 +24,8 @@ public class LevelLoader : MonoBehaviour
     public void LoadNextScene(string scene_name, string old_scene = null) {
 
 
-        GameTransition(scene_name, old_scene);
+        Debug.Log("LA SCENE : "+scene_name);
+        GameTransition(scene_name, current_scene);
         //Lance l'animation
         //StartCoroutine(LoadLevel(scene_name));
         //if (old_scene != null) {
@@ -41,12 +42,13 @@ public class LevelLoader : MonoBehaviour
         transition.SetTrigger("EndFade");
     }
 
-    void GameTransition(string gameName, string oldScene)
+    void GameTransition(string scene_name, string old_scene)
     {
         TextMeshProUGUI text = transitionPanel.GetComponentInChildren<TextMeshProUGUI>();
+        text.text = scene_name;
         text.color = UnityEngine.Random.ColorHSV();
         transitionPanel.SetActive(true);
-        IEnumerator afterScaleGrow = AfterScaleGrow(gameName, oldScene, () => StartCoroutine(transitionPanel.ChangeScale(1f, 4f, initialTransitionScale, Vector3.zero,
+        IEnumerator afterScaleGrow = AfterScaleGrow(scene_name, old_scene, () => StartCoroutine(transitionPanel.ChangeScale(1f, 4f, initialTransitionScale, Vector3.zero,
  () => transitionPanel.SetActive(false)
  )));
 
@@ -62,17 +64,15 @@ public class LevelLoader : MonoBehaviour
         }
     }
 
-    IEnumerator AfterScaleGrow(string gameName, string oldScene, Action after)
+    IEnumerator AfterScaleGrow(string scene_name, string old_scene, Action after)
     {
-        if (oldScene != null)
+        if (old_scene != null)
         {
-            SceneManager.UnloadSceneAsync(oldScene);
+            SceneManager.UnloadSceneAsync(old_scene);
         }
-        TextMeshProUGUI text = transitionPanel.GetComponentInChildren<TextMeshProUGUI>();
-        text.text = gameName;
         yield return new WaitForSeconds(transition_time);
-        SceneManager.LoadScene(gameName, LoadSceneMode.Additive);
-        current_scene = gameName;
+        SceneManager.LoadScene(scene_name, LoadSceneMode.Additive);
+        current_scene = scene_name;
         after();
     }
 }

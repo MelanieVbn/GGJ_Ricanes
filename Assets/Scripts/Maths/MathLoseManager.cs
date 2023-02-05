@@ -1,6 +1,13 @@
 using UnityEngine;
 public class MathLoseManager : LoseManager
 {
+    GameOrchestrator gameOrchestrator;
+
+    private void Awake()
+    {
+        gameOrchestrator = FindAnyObjectByType<GameOrchestrator>();
+    }
+
     public override void Lose()
     {
         Debug.Log("LOSER");
@@ -9,5 +16,6 @@ public class MathLoseManager : LoseManager
     public override void Win()
     {
         Debug.Log("Winner !!");
+        gameOrchestrator.MiniGameEnded();
     }
 }

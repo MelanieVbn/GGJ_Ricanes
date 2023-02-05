@@ -17,6 +17,8 @@ public class RootingManager : MonoBehaviour
     [SerializeField] Animator animator;
     [SerializeField] ParticleSystem particles;
 
+    GameOrchestrator gameOrchestrator;
+
     private RootingZoneGauge rootingZoneGaugeScript;
     private Coroutine balancier;
 
@@ -42,6 +44,7 @@ public class RootingManager : MonoBehaviour
     void Start()
     {
         StartGauge();
+       gameOrchestrator = FindAnyObjectByType<GameOrchestrator>();
     }
 
     // Update is called once per frame
@@ -51,8 +54,8 @@ public class RootingManager : MonoBehaviour
         {
             if(rootingSteps == 0)
             {
-                Debug.Log("You win");
                 gameEnded = true;
+                gameOrchestrator.MiniGameEnded();
             }
             else
             {
@@ -86,7 +89,8 @@ public class RootingManager : MonoBehaviour
                         else
                         {
                             gameEnded = true;
-                            Debug.Log("You Loose");
+                            Debug.Log("Looser ! ");
+                            //gameOrchestrator.MiniGameEnded();
                         }
                     }
                 }

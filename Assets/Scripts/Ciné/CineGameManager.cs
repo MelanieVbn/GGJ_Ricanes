@@ -20,6 +20,8 @@ public class CineGameManager : MonoBehaviour
                 int emplacement = UnityEngine.Random.Range(0, sieges.Count);
                 sieges[emplacement].GetComponent<SpriteRenderer>().sprite = animal;
                 sieges[emplacement].AddComponent<PolygonCollider2D>();
+                sieges[emplacement].AddComponent<CineLoseManager>();
+
                 rat = sieges[emplacement];
                 sieges.RemoveAt(emplacement);
             }

@@ -5,14 +5,20 @@ using UnityEngine.SceneManagement;
 
 public class CineLoseManager : LoseManager
 {
+    GameOrchestrator gameOrchestrator;
+
+    private void Awake()
+    {
+        gameOrchestrator = FindAnyObjectByType<GameOrchestrator>();
+    }
     public override void Lose()
     {
-        Debug.Log("LOSER");
-        SceneManager.LoadScene("Start Menu");
+        gameOrchestrator.MiniGameEnded();
     }
 
     public override void Win()
     {
-        throw new System.NotImplementedException();
+        gameOrchestrator.MiniGameEnded();
+        //throw new System.NotImplementedException();
     }
 }
