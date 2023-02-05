@@ -11,6 +11,13 @@ public class GameOrchestrator : MonoBehaviour
     public int miniGameCount = 10;
     public int score = 0;
 
+    [SerializeField] GameObject endMenu;
+    [SerializeField] TextMeshProUGUI scoreText;
+
+    private void Awake()
+    {
+        endMenu.SetActive(false);
+    }
     void Start() {
             Debug.Log("START");
             NextMiniGame();
@@ -41,7 +48,9 @@ public class GameOrchestrator : MonoBehaviour
     void LoadEndScreen()
     {
         Debug.Log("TOTAL : " + score);
-        SceneManager.LoadScene("Start Menu");
+        endMenu.SetActive(true);
+        scoreText.text = score.ToString();
+        this.GetComponent<LevelLoader>().GameEnded();
         //TextMeshProUGUI text = transition.GetComponentInChildren<TextMeshProUGUI>();
         //text.color = Random.ColorHSV();
         //transition.SetActive(true);
@@ -74,5 +83,10 @@ public class GameOrchestrator : MonoBehaviour
     void SetScore(int score)
     {
         this.score += score;
+    }
+
+    public void BackToMainMenu()
+    {
+        SceneManager.LoadScene("Start Menu");
     }
 }

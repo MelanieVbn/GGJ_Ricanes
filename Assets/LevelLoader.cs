@@ -35,6 +35,14 @@ public class LevelLoader : MonoBehaviour
         //Lance l'animation reverse
     }
 
+    public void GameEnded()
+    {
+        if (current_scene != null)
+        {
+            SceneManager.UnloadSceneAsync(current_scene);
+        }
+    }
+
     IEnumerator LoadLevel(string scene_name) {
         transition.SetTrigger("StartFade");
         yield return new WaitForSeconds(transition_time);
