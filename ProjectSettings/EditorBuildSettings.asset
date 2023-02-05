@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Dents.unity
     guid: cc472cf16bbecde46b8f0fe37fdf4621
+  - enabled: 1
+    path: Assets/Scenes/Game.unity
+    guid: 10491d4b77c22a14088f5e65a6750fd8
   m_configObjects: {}

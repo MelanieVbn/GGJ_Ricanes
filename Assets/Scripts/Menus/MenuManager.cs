@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
@@ -17,7 +18,12 @@ public class MenuManager : MonoBehaviour
     }
     public void OnPlayButtonClicked()
     {
-        Debug.Log("Start game");
+        TextMeshProUGUI text = transition.GetComponentInChildren<TextMeshProUGUI>();
+        text.color = Random.ColorHSV();
+        transition.SetActive(true);
+        StartCoroutine(transition.ChangeScale(.5f, 8f, Vector3.zero, initialTransitionScale, () => {
+            SceneManager.LoadScene("Game");
+        }));
     }
 
     public void OnSelectGameButtonClicked()

@@ -9,7 +9,7 @@ public class GameOrchestrator : MonoBehaviour
     List<string> ordreJeux;
     private static bool addedSpy = false;
     private static int gameIndex = 0;
-    void Awake() {
+    void Start() {
         if (!addedSpy) {
             addedSpy = true;
             SceneManager.sceneLoaded += OnSceneLoaded;
