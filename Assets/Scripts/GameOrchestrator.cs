@@ -9,6 +9,7 @@ public class GameOrchestrator : MonoBehaviour
     public List<string> minijeux;
     public int gameIndex = 0;
     public int miniGameCount = 10;
+    public int score = 0;
 
     void Start() {
             Debug.Log("START");
@@ -39,6 +40,7 @@ public class GameOrchestrator : MonoBehaviour
 
     void LoadEndScreen()
     {
+        Debug.Log("TOTAL : " + score);
         SceneManager.LoadScene("Start Menu");
         //TextMeshProUGUI text = transition.GetComponentInChildren<TextMeshProUGUI>();
         //text.color = Random.ColorHSV();
@@ -63,8 +65,14 @@ public class GameOrchestrator : MonoBehaviour
         }
     }
 
-    public void MiniGameEnded()
+    public void MiniGameEnded(int score)
     {
+        SetScore(score);
         NextMiniGame();
+    }
+
+    void SetScore(int score)
+    {
+        this.score += score;
     }
 }

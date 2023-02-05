@@ -21,6 +21,8 @@ public class ToothBehaviour : MonoBehaviour
     float tempsPasse = 0;
     bool tooLate = false;
 
+    int score = 100;
+
     GameOrchestrator gameOrchestrator;
 
     private void Awake()
@@ -63,10 +65,13 @@ public class ToothBehaviour : MonoBehaviour
                         if (isBad)
                         { //TODO changer en invoke
                             print("Win !!!");
-                            gameOrchestrator.MiniGameEnded();
+                            gameOrchestrator.MiniGameEnded(score);
                         }
                         else
+                        {
                             print("LOSE");
+                            gameOrchestrator.MiniGameEnded(0);
+                        }
                     }
                 }
 

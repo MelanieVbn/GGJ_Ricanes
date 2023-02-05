@@ -40,9 +40,8 @@ public class MathGameManager : MonoBehaviour
     }
 
     public void OnClickButton(int buttonId) {
-        Debug.Log("eee");
         if (buttonId == goodResponseIndex) {
-            GetComponent<LoseManager>().Win();
+            GetComponent<LoseManager>().Win(100);
         }
         else {
             GetComponent<LoseManager>().Lose();

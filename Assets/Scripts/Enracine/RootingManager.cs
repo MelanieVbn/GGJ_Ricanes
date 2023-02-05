@@ -30,6 +30,8 @@ public class RootingManager : MonoBehaviour
 
     private bool gameEnded;
 
+    private int score;
+
     private void Awake()
     {
         if (needleRange.Length == 2)
@@ -55,7 +57,7 @@ public class RootingManager : MonoBehaviour
             if(rootingSteps == 0)
             {
                 gameEnded = true;
-                gameOrchestrator.MiniGameEnded();
+                gameOrchestrator.MiniGameEnded(score);
             }
             else
             {
@@ -72,6 +74,14 @@ public class RootingManager : MonoBehaviour
                         animator.SetTrigger("rooting");
                         StartCoroutine(WaitForSeconds(.6f, () =>
                         {
+                            if (rootingSteps == 3)
+                            {
+                                score += 20;
+                            }
+                            else
+                            {
+                                score += 40;
+                            }
                             particles.Play();
                             player.transform.position = new Vector3(player.transform.position.x, player.transform.position.y - 1, player.transform.position.z);
                             rootingSteps--;
@@ -90,7 +100,7 @@ public class RootingManager : MonoBehaviour
                         {
                             gameEnded = true;
                             Debug.Log("Looser ! ");
-                            //gameOrchestrator.MiniGameEnded();
+                            gameOrchestrator.MiniGameEnded(score);
                         }
                     }
                 }
@@ -100,7 +110,7 @@ public class RootingManager : MonoBehaviour
 
     void StartGauge()
     {
-        if (rootingSteps > 0 && lives > 0)
+        if (rootingSteps > 0)
         {
             isNeedleStopped = false;
             canStop = true;

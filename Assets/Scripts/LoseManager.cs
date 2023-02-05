@@ -5,5 +5,5 @@ using UnityEngine;
 public abstract class LoseManager : MonoBehaviour
 {
     abstract public void Lose();
-    abstract public void Win();
+    abstract public void Win(int score);
 }
