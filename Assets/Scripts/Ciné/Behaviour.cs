@@ -17,19 +17,14 @@ public class Behaviour : MonoBehaviour
     {
         loseBehaviour = gameObject.GetComponent<CineLoseManager>();
     }
-    //private void Start() {
-    //    text = GameObject.Find("GameManager").GetComponent<CineGameManager>().text;
-    //}
 
     private void OnMouseDown() {
         //Animate
         //Cri
         if (race == Races.Rat) {
-            //text.text = "Rat-cine !";
             loseBehaviour.Win(100);
 
         } else {
-            //text.text = "De-Rat-cine !";
             loseBehaviour.Lose();
         }
     }

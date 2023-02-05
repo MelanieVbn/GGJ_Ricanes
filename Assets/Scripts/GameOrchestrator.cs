@@ -10,6 +10,9 @@ public class GameOrchestrator : MonoBehaviour
     public int gameIndex = 0;
     public int miniGameCount = 10;
     public int score = 0;
+    public AudioSource audioSource;
+    public AudioClip victoire;
+    public AudioClip defaite;
 
     [SerializeField] GameObject endMenu;
     [SerializeField] TextMeshProUGUI scoreText;
@@ -76,6 +79,12 @@ public class GameOrchestrator : MonoBehaviour
 
     public void MiniGameEnded(int score)
     {
+        if (score == 0) {
+            audioSource.clip = victoire;
+        } else {
+            audioSource.clip = defaite;
+        }
+        audioSource.Play();
         SetScore(score);
         NextMiniGame();
     }
