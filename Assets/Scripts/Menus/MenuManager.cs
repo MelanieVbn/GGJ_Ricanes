@@ -8,6 +8,9 @@ public class MenuManager : MonoBehaviour
 {
     [SerializeField] GameObject[] panels;
     [SerializeField] GameObject transition;
+    [SerializeField] List<AudioSource> musiques;
+    [SerializeField] AudioSource mainAS;
+    [SerializeField] AudioClip ericContent;
     Vector3 initialTransitionScale;
 
     private void Start()
@@ -15,12 +18,15 @@ public class MenuManager : MonoBehaviour
         initialTransitionScale = transition.transform.localScale;
         ActivatePanel("MainMenuPanel");
         transition.SetActive(false);
+        musiques[1].PlayDelayed(musiques[0].clip.length - 0.5f);
     }
     public void OnPlayButtonClicked()
     {
         TextMeshProUGUI text = transition.GetComponentInChildren<TextMeshProUGUI>();
         text.color = Random.ColorHSV();
         transition.SetActive(true);
+        mainAS.clip = ericContent;
+        mainAS.Play();
         StartCoroutine(transition.ChangeScale(.5f, 8f, Vector3.zero, initialTransitionScale, () => {
             SceneManager.LoadScene("Game");
         }));
