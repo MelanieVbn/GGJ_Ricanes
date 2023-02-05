@@ -11,4 +11,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Cinescene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Racine.unity
+    guid: a8ee6e261441d8a4083dea1873e31b2a
+  - enabled: 1
+    path: Assets/Scenes/Enracine.unity
+    guid: 325d5b5f3fdb0c44ab104b7bb4975d94
+  - enabled: 1
+    path: Assets/Scenes/Dents.unity
+    guid: cc472cf16bbecde46b8f0fe37fdf4621
   m_configObjects: {}
