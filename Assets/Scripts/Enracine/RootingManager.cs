@@ -16,6 +16,9 @@ public class RootingManager : MonoBehaviour
 
     [SerializeField] Animator animator;
     [SerializeField] ParticleSystem particles;
+    [SerializeField] AudioClip angry;
+    [SerializeField] AudioClip content;
+    [SerializeField] AudioSource audioSource;
 
     GameOrchestrator gameOrchestrator;
 
@@ -69,6 +72,8 @@ public class RootingManager : MonoBehaviour
 
                     if (IsIndicatorInRightZone())
                     {
+                        audioSource.clip = content;
+                        audioSource.Play();
                         animator.SetTrigger("rooting");
                         StartCoroutine(WaitForSeconds(.6f, () =>
                         {
@@ -80,6 +85,8 @@ public class RootingManager : MonoBehaviour
                     }
                     else
                     {
+                        audioSource.clip = angry;
+                        audioSource.Play();
                         animator.SetTrigger("angry");
                         if (lives > 0)
                         {
@@ -88,9 +95,7 @@ public class RootingManager : MonoBehaviour
                         }
                         else
                         {
-                            gameEnded = true;
-                            Debug.Log("Looser ! ");
-                            //gameOrchestrator.MiniGameEnded();
+                            gameOrchestrator.MiniGameEnded();
                         }
                     }
                 }
