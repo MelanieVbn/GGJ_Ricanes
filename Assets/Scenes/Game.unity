@@ -452,6 +452,7 @@ GameObject:
   - component: {fileID: 321649179}
   - component: {fileID: 321649181}
   - component: {fileID: 321649180}
+  - component: {fileID: 321649182}
   m_Layer: 0
   m_Name: GameOrchestrator
   m_TagString: Untagged
@@ -473,7 +474,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minijeux:
   - Racine
-  - Enracine
+  - Cinescene
   - Dents
   - Racine
   gameIndex: 0
