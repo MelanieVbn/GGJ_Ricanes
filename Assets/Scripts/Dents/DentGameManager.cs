@@ -8,6 +8,8 @@ public class DentGameManager : MonoBehaviour
     List<GameObject> dents;
     void Start()
     {
-        dents[Random.Range(0, dents.Count)].GetComponent<ToothBehaviour>().isBad = true;  
+        int randomDent = Random.Range(0, dents.Count);
+        dents[randomDent].GetComponent<ToothBehaviour>().isBad = true;
+        //AfficheFenetre(dents[randomDent].GetComponent<SpriteRenderer>().sprite)
     }
 }

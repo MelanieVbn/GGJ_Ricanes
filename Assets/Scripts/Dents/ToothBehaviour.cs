@@ -14,6 +14,7 @@ public class ToothBehaviour : MonoBehaviour
     float localTempsArrache;
     [SerializeField]
     float speed = 1.0f; //how fast it shakes
+    float originalSpeed;
     [SerializeField]
     float amount = 1.0f; //how much it shakes
     Vector3 originalPosition;
@@ -22,6 +23,7 @@ public class ToothBehaviour : MonoBehaviour
 
     private void Start() {
         originalPosition = transform.position;
+        originalSpeed = speed;
     }
 
     private void OnMouseDown() {
@@ -41,12 +43,16 @@ public class ToothBehaviour : MonoBehaviour
             if (heading.magnitude > minMagnitude) {
                 if ((dragPosition.y > 0 && !retournee) || (dragPosition.y < 0 && retournee)) {
                     localTempsArrache -= Time.deltaTime;
+                    speed += Time.deltaTime;
                     if (localTempsArrache < 0) {
                         tooLate = true;
-                        if (retournee)
+                        if (retournee) {
                             transform.position += new Vector3(0, -1, 0);
-                        else
+                            this.GetComponent<SpriteRenderer>().sortingOrder = 10;
+                        }
+                        else {
                             transform.position += new Vector3(0, 1, 0);
+                        }
                         if (isBad) //TODO changer en invoke
                             print("Win !!!");
                         else
@@ -67,8 +73,10 @@ public class ToothBehaviour : MonoBehaviour
     }
 
     private void OnMouseUp() {
-        localTempsArrache = tempsDArrachage;
-        transform.position = originalPosition;
+        if (!tooLate) {
+            localTempsArrache = tempsDArrachage;
+            transform.position = originalPosition;
+        }
     }
     
     private void FixedUpdate() {
