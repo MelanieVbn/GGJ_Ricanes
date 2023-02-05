@@ -79,7 +79,7 @@ public class GameOrchestrator : MonoBehaviour
 
     public void MiniGameEnded(int score)
     {
-        if (score == 0) {
+        if (score == 100) {
             audioSource.clip = victoire;
         } else {
             audioSource.clip = defaite;
