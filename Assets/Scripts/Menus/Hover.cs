@@ -17,13 +17,13 @@ public class Hover : MonoBehaviour, IPointerEnterHandler,IPointerExitHandler
     public void OnPointerEnter(PointerEventData eventData)
     {
         if(shrinkCoroutine != null) StopCoroutine(shrinkCoroutine);
-        growCoroutine = StartCoroutine(gameObject.ChangeScale(.5f, initialScale, initialScale * 1.1f));
+        growCoroutine = StartCoroutine(gameObject.ChangeScale(.5f, 10f, initialScale, initialScale * 1.1f));
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         if(growCoroutine != null) StopCoroutine(growCoroutine);
-        shrinkCoroutine = StartCoroutine(gameObject.ChangeScale(.5f, transform.localScale, initialScale));
+        shrinkCoroutine = StartCoroutine(gameObject.ChangeScale(.5f, 10f, transform.localScale, initialScale));
     }
 
 }
