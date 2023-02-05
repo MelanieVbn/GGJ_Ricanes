@@ -55,6 +55,7 @@ public class ToothBehaviour : MonoBehaviour
             if(!audioSource.isPlaying) {
                 audioSource.clip = dentTiree;
                 audioSource.loop = true;
+                audioSource.Play();
             }
             if (heading.magnitude > minMagnitude) {
                 if ((dragPosition.y > 0 && !retournee) || (dragPosition.y < 0 && retournee)) {
@@ -71,6 +72,7 @@ public class ToothBehaviour : MonoBehaviour
                         }
                         audioSource.clip = dentTiree;
                         audioSource.loop = false;
+                        audioSource.Play();
                         Invoke("WinOrLose", 2);
                     }
                 }
