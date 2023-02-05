@@ -7,6 +7,8 @@ TagManager:
   - GameManager
   - siege1
   - siege2
+  - Haut
+  - Bas
   layers:
   - Default
   - TransparentFX
