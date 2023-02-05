@@ -452,7 +452,6 @@ GameObject:
   - component: {fileID: 321649179}
   - component: {fileID: 321649181}
   - component: {fileID: 321649180}
-  - component: {fileID: 321649182}
   m_Layer: 0
   m_Name: GameOrchestrator
   m_TagString: Untagged
@@ -480,12 +479,11 @@ MonoBehaviour:
   gameIndex: 0
   miniGameCount: 5
   score: 0
+  audioSource: {fileID: 321649180}
+  victoire: {fileID: 8300000, guid: e053232aa0c11dc49834cbc581a8fd1c, type: 3}
+  defaite: {fileID: 8300000, guid: ab2fa2f3b4680d140a49eb4307845e88, type: 3}
   endMenu: {fileID: 1588251955}
   scoreText: {fileID: 25075438}
-  score: 0
-  audioSource: {fileID: 321649180}
-  victoire: {fileID: 8300000, guid: f824de316e82bf24f948256239e98880, type: 3}
-  defaite: {fileID: 8300000, guid: ab2fa2f3b4680d140a49eb4307845e88, type: 3}
 --- !u!4 &321649178
 Transform:
   m_ObjectHideFlags: 0
