@@ -5,10 +5,9 @@ using UnityEngine.UIElements;
 
 public class MathGameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    [SerializeField]
-    VisualElement root;
     List<Button> buttons;
+    [SerializeField]
+    public List<string> buttonNames;
     [SerializeField]
     List<string> possibleWrongAnswers;
     [SerializeField]
@@ -23,17 +22,11 @@ public class MathGameManager : MonoBehaviour
     }
 
     void CreateButtons() {
-        root = GetComponent<UIDocument>().rootVisualElement;
-        Button button1 = root.Q<Button>("Button1");
-        Button button2 = root.Q<Button>("Button2");
-        Button button3 = root.Q<Button>("Button3");
-        Button button4 = root.Q<Button>("Button4");
-        label = root.Q<Label>("Question");
-        buttons = new List<Button> { button1, button2, button3, button4 };
-        button1.clicked += () => OnClickButton(0);
-        button2.clicked += () => OnClickButton(1);
-        button3.clicked += () => OnClickButton(2);
-        button4.clicked += () => OnClickButton(3);
+        for (int i = 0; i < buttonNames.Count; i++)
+        {
+            Button button = GameObject.Find(buttonNames[i]).GetComponent<Button>();
+            buttons.Add(button);
+        }
     }
 
     void ChooseAnswers() {
@@ -50,7 +43,8 @@ public class MathGameManager : MonoBehaviour
         }
     }
 
-    void OnClickButton(int buttonId) {
+    public void OnClickButton(int buttonId) {
+        Debug.Log("eee");
         if (buttonId == goodResponseIndex) {
             GetComponent<LoseManager>().Win();
         }
